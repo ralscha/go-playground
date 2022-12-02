@@ -53,6 +53,8 @@ func DownloadInput(year, day int) (string, error) {
 	cookie.Value = string(sessionCookie)
 	req.AddCookie(cookie)
 
+	req.Header.Add("User-Agent", "github.com/ralscha/go-playground by me@rasc.ch")
+
 	resp, err := httpClient.Do(req)
 	if err != nil {
 		return "", fmt.Errorf("request failed: %v", err)
