@@ -7,6 +7,19 @@ import (
 	"strings"
 )
 
+type rule struct {
+	opponent string
+	win      string
+	draw     string
+	lose     string
+}
+
+var rules = []rule{
+	{opponent: "A", win: "Y", draw: "X", lose: "Z"},
+	{opponent: "B", win: "Z", draw: "Y", lose: "X"},
+	{opponent: "C", win: "X", draw: "Z", lose: "Y"},
+}
+
 func main() {
 	inputFile := "./day_02/input.txt"
 	input, err := download.ReadInput(inputFile, 2022, 2)
@@ -14,8 +27,6 @@ func main() {
 		log.Fatalf("reading input failed: %v", err)
 	}
 
-	//9177
-	//12111
 	part1(input)
 	part2(input)
 }
@@ -32,43 +43,33 @@ func part1(input string) {
 }
 
 func part2(input string) {
-	// X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win
 	totalScore := 0
 	for _, line := range strings.Split(input, "\n") {
 		in := strings.Split(line, " ")
 		if len(in) == 2 {
 			opponent := in[0]
 			expected := in[1]
-			myMove := ""
-			if expected == "Y" {
-				if opponent == "A" {
-					myMove = "X"
-				} else if opponent == "B" {
-					myMove = "Y"
-				} else {
-					myMove = "Z"
-				}
-			} else if expected == "X" {
-				if opponent == "A" {
-					myMove = "Z"
-				} else if opponent == "B" {
-					myMove = "X"
-				} else {
-					myMove = "Y"
-				}
-			} else if expected == "Z" {
-				if opponent == "A" {
-					myMove = "Y"
-				} else if opponent == "B" {
-					myMove = "Z"
-				} else {
-					myMove = "X"
-				}
-			}
+			myMove := getMyMove(opponent, expected)
 			totalScore += score(opponent, myMove)
 		}
 	}
 	fmt.Println(totalScore)
+}
+
+// X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win
+func getMyMove(o, e string) string {
+	for _, r := range rules {
+		if r.opponent == o {
+			if e == "Y" {
+				return r.draw
+			} else if e == "X" {
+				return r.lose
+			} else if e == "Z" {
+				return r.win
+			}
+		}
+	}
+	return ""
 }
 
 func score(o, m string) int {
@@ -82,32 +83,15 @@ func score(o, m string) int {
 		score += 3
 	}
 
-	// 0 if you lost, 3 if the round was a draw, and 6 if you won
-	if o == "A" {
-		if m == "X" {
-			score += 3
-		} else if m == "Y" {
-			score += 6
-		} else if m == "Z" {
-			score += 0
-		}
-	} else if o == "B" {
-		if m == "X" {
-			score += 0
-		} else if m == "Y" {
-			score += 3
-		} else if m == "Z" {
-			score += 6
-		}
-	} else if o == "C" {
-		if m == "X" {
-			score += 6
-		} else if m == "Y" {
-			score += 0
-		} else if m == "Z" {
-			score += 3
+	for _, rule := range rules {
+		if rule.opponent == o {
+			if m == rule.win {
+				score += 6
+			} else if m == rule.draw {
+				score += 3
+			}
+			break
 		}
 	}
-
 	return score
 }
