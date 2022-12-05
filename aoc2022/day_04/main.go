@@ -1,10 +1,10 @@
 package main
 
 import (
+	"adventofcode.com/2022/internal/conv"
 	"adventofcode.com/2022/internal/download"
 	"fmt"
 	"log"
-	"strconv"
 	"strings"
 )
 
@@ -30,10 +30,10 @@ func part1(input string) {
 		secondPair := splitted[1]
 		firstPairSplitted := strings.Split(firstPair, "-")
 		secondPairSplitted := strings.Split(secondPair, "-")
-		firstPairFirst := mustAtoi(firstPairSplitted[0])
-		firstPairSecond := mustAtoi(firstPairSplitted[1])
-		secondPairFirst := mustAtoi(secondPairSplitted[0])
-		secondPairSecond := mustAtoi(secondPairSplitted[1])
+		firstPairFirst := conv.MustAtoi(firstPairSplitted[0])
+		firstPairSecond := conv.MustAtoi(firstPairSplitted[1])
+		secondPairFirst := conv.MustAtoi(secondPairSplitted[0])
+		secondPairSecond := conv.MustAtoi(secondPairSplitted[1])
 
 		if firstPairFirst <= secondPairFirst && firstPairSecond >= secondPairSecond {
 			fullyContain += 1
@@ -55,10 +55,10 @@ func part2(input string) {
 		secondPair := splitted[1]
 		firstPairSplitted := strings.Split(firstPair, "-")
 		secondPairSplitted := strings.Split(secondPair, "-")
-		firstPairFirst := mustAtoi(firstPairSplitted[0])
-		firstPairSecond := mustAtoi(firstPairSplitted[1])
-		secondPairFirst := mustAtoi(secondPairSplitted[0])
-		secondPairSecond := mustAtoi(secondPairSplitted[1])
+		firstPairFirst := conv.MustAtoi(firstPairSplitted[0])
+		firstPairSecond := conv.MustAtoi(firstPairSplitted[1])
+		secondPairFirst := conv.MustAtoi(secondPairSplitted[0])
+		secondPairSecond := conv.MustAtoi(secondPairSplitted[1])
 
 		if firstPairFirst <= secondPairFirst && firstPairSecond >= secondPairFirst {
 			partiallyContain += 1
@@ -67,12 +67,4 @@ func part2(input string) {
 		}
 	}
 	fmt.Println(partiallyContain)
-}
-
-func mustAtoi(s string) int {
-	i, err := strconv.Atoi(s)
-	if err != nil {
-		log.Fatalf("converting to int failed: %v", err)
-	}
-	return i
 }
