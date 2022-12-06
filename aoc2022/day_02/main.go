@@ -34,7 +34,7 @@ func main() {
 func part1(input string) {
 	totalScore := 0
 	for _, line := range strings.Split(input, "\n") {
-		in := strings.Split(line, " ")
+		in := strings.Fields(line)
 		if len(in) == 2 {
 			totalScore += score(in[0], in[1])
 		}
@@ -45,7 +45,7 @@ func part1(input string) {
 func part2(input string) {
 	totalScore := 0
 	for _, line := range strings.Split(input, "\n") {
-		in := strings.Split(line, " ")
+		in := strings.Fields(line)
 		if len(in) == 2 {
 			opponent := in[0]
 			expected := in[1]

@@ -111,6 +111,6 @@ func part2(input string) {
 
 func parseLine(line string) (int, int, int) {
 	// move 6 from 4 to 3
-	splitted := strings.Split(line, " ")
+	splitted := strings.Fields(line)
 	return conv.MustAtoi(splitted[1]), conv.MustAtoi(splitted[3]), conv.MustAtoi(splitted[5])
 }
