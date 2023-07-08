@@ -13,6 +13,24 @@ type FakeVehicle {
 }
 */
 
+type FlagID struct {
+	name string
+}
+
+func (f FlagID) String() string {
+	return f.name
+}
+
+var (
+	FooBar   = FlagID{"FooBar"}
+	FizzBuzz = FlagID{"FizzBuzz"}
+)
+
+func IsEnabled(id FlagID) bool {
+	fmt.Println(id)
+	return true
+}
+
 func main() {
 
 	v := vehicle.Values.Truck
@@ -23,6 +41,9 @@ func main() {
 	fmt.Println(rate)
 
 	// rate, err := calculateInsuranceRate(&FakeVehicle{})
+
+	IsEnabled(FooBar)
+	IsEnabled(FizzBuzz)
 }
 
 func calculateInsuranceRate(v vehicle.Type) (float64, error) {
