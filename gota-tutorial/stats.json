@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "John",
+    "Age": 44,
+    "Favorite Color": "Red",
+    "Height(ft)": 6.7
+  },
+  {
+    "Name": "Mary",
+    "Age": 40,
+    "Favorite Color": "Blue",
+    "Height(ft)": 5.7
+  },
+  {
+    "Name": "Esther",
+    "Age": 35,
+    "Favorite Color": "Black",
+    "Height(ft)": 4.9
+  },
+  {
+    "Name": "Mary",
+    "Age": 40,
+    "Favorite Color": "Green",
+    "Height(ft)": 5.2
+  }
+]

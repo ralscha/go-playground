@@ -1,0 +1,21 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  CURRENT_DIR:
+    sh: pwd
+
+tasks:
+  default:
+    cmds:
+      - task --list-all
+  compile-go:
+    cmds:
+      - GOOS=js GOARCH=wasm go build -ldflags "-s -w" -o main.wasm main.go 
+  compile:
+    cmds:
+      - docker run --rm -v {{toSlash .CURRENT_DIR}}:/src tinygo/tinygo tinygo build -no-debug -o /src/main.wasm -target=wasm /src/main.go
+  web:
+    cmds:
+      - go run web.go
