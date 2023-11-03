@@ -3,12 +3,12 @@ module s3sync.rasc.ch
 go 1.21
 
 require (
-	github.com/aws/aws-sdk-go v1.44.303
-	github.com/seqsense/s3sync v1.9.0
+	github.com/aws/aws-sdk-go v1.47.3
+	github.com/seqsense/s3sync v1.9.1
 )
 
 require (
-	github.com/gabriel-vasile/mimetype v1.4.2 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.3 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	golang.org/x/net v0.12.0 // indirect
+	golang.org/x/net v0.17.0 // indirect
 )
