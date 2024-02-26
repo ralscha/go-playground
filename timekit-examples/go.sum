@@ -1,5 +1,5 @@
-github.com/bartmika/timekit v0.0.0-20240126215021-2cf1c9a07052 h1:N3YxjlfUAeZKjRrMCCrbuJXr4r4XwTmtyx08GPG8gxQ=
-github.com/bartmika/timekit v0.0.0-20240126215021-2cf1c9a07052/go.mod h1:bVnPliAhDTux+4YU7HS1gEQnba7+nWWHf6ZfJQvVt/c=
+github.com/bartmika/timekit v0.0.0-20240130035202-cad2325dfd57 h1:wd7rdvqOnOXpA+CXNMsPTcLboXoxd6jmVWMtHysRSdc=
+github.com/bartmika/timekit v0.0.0-20240130035202-cad2325dfd57/go.mod h1:bVnPliAhDTux+4YU7HS1gEQnba7+nWWHf6ZfJQvVt/c=
 github.com/dannav/hhmmss v1.0.0 h1:/FjTOHXSEOuQIWwPs4abUS6s42ndAGhnVo17VbGnCMA=
 github.com/dannav/hhmmss v1.0.0/go.mod h1:LXyJMlU/lUpkUB4Mj5xQr3Ad1YQb7jBLajgzuKqpaV0=
 github.com/relvacode/iso8601 v1.4.0 h1:GsInVSEJfkYuirYFxa80nMLbH2aydgZpIf52gYZXUJs=
