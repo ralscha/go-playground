@@ -1,7 +1,7 @@
 module osm
 
-go 1.21.4
+go 1.23.0
 
 require github.com/qedus/osmpbf v1.2.0
 
-require google.golang.org/protobuf v1.32.0 // indirect
+require google.golang.org/protobuf v1.34.2 // indirect

@@ -1,11 +1,11 @@
 package main
 
 import (
-    "fmt"
+	"fmt"
 
-    "golang.org/x/example/stringutil"
+	"golang.org/x/example/stringutil"
 )
 
 func main() {
-    fmt.Println(stringutil.ToUpper("Hello"))
+	fmt.Println(stringutil.ToUpper("Hello"))
 }
