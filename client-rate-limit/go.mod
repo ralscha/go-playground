@@ -1,5 +1,5 @@
 module ratelimit
 
-go 1.23.2
+go 1.23.3
 
-require golang.org/x/time v0.7.0
+require golang.org/x/time v0.8.0
