@@ -1,3 +1,3 @@
 module iterators
 
-go 1.23.3
+go 1.23.4
