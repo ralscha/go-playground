@@ -2,7 +2,7 @@ module toydns
 
 go 1.23.5
 
-require github.com/miekg/dns v1.1.62
+require github.com/miekg/dns v1.1.63
 
 require (
 	golang.org/x/mod v0.22.0 // indirect
