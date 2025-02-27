@@ -1,5 +1,5 @@
 module demo
 
-go 1.23.6
+go 1.24.0
 
-require github.com/quagmt/udecimal v1.7.0
+require github.com/quagmt/udecimal v1.8.0
