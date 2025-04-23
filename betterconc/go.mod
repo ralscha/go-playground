@@ -1,6 +1,6 @@
 module betterconc
 
-go 1.24.1
+go 1.24.2
 
 require github.com/sourcegraph/conc v0.3.0
 
