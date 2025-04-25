@@ -4,7 +4,7 @@ go 1.24.2
 
 require (
 	github.com/redis/go-redis/v9 v9.7.3
-	github.com/testcontainers/testcontainers-go v0.36.0
+	github.com/testcontainers/testcontainers-go v0.37.0
 )
 
 require (
