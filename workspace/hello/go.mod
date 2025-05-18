@@ -1,5 +1,5 @@
 module example.com/hello
 
-go 1.24.2
+go 1.24.3
 
 require golang.org/x/example v0.0.0-20230515183114-5bec75697667

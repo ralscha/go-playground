@@ -1,0 +1,1 @@
+https://blog.vertigrated.com/iterseq-in-practice
