@@ -1,5 +1,5 @@
 module structuredlog
 
-go 1.24.3
+go 1.24.5
 
-require golang.org/x/exp v0.0.0-20250506013437-ce4c2cf36ca6
+require golang.org/x/exp v0.0.0-20250620022241-b7579e27df2b
