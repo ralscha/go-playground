@@ -1,0 +1,43 @@
+# oapi-codegen configuration file
+# This generates Go code from the OpenAPI specification
+
+# Package name for the generated code
+package: main
+
+# Output file for the generated code
+output: generated.go
+
+# Generate both types and client code
+generate:
+  # Generate Go types/models from the OpenAPI schemas
+  models: true
+
+  # Generate client code for making HTTP requests
+  client: true
+
+# Additional configuration options
+output-options:
+  # Skip generating the prune helper
+  skip-prune: false
+
+  # Skip generating the fmt import if not needed
+  skip-fmt: false
+
+  # Add user defined prefix to all generated types
+  # user-templates: []
+
+# Import mapping for custom types
+import-mapping:
+  # Example: map custom types to existing packages
+  # "github.com/google/uuid.UUID": "github.com/google/uuid"
+
+# Additional imports to include in generated code
+additional-imports:
+  # Example additional imports
+  # - "context"
+  # - "time"
+
+# Compatibility settings
+compatibility:
+  # Always prefix enum values to avoid conflicts
+  always-prefix-enum-values: true

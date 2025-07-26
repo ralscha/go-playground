@@ -10,5 +10,5 @@ require (
 require (
 	github.com/gabriel-vasile/mimetype v1.4.9 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
-	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/net v0.42.0 // indirect
 )
