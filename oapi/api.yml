@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Chuck Norris Facts API
+  description: A simple API for getting random Chuck Norris facts.
+  version: 1.0.0
+servers:
+  - url: https://api.chucknorris.io
+    description: Main API server
+
+tags:
+  - name: jokes
+    description: Operations related to Chuck Norris jokes
+
+paths:
+  /jokes/random:
+    get:
+      summary: Get a random Chuck Norris fact
+      operationId: getRandomFact
+      tags:
+        - jokes
+      responses:
+        '200':
+          description: A random Chuck Norris fact
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  icon_url:
+                    type: string
+                    format: url
+                    description: URL to Chuck Norris icon
+                    example: https://assets.chucknorris.host/img/avatar/chuck-norris.png
+                  id:
+                    type: string
+                    description: Unique ID of the fact
+                    example: NhalBjqFS6COQsskeoWhOQ
+                  url:
+                    type: string
+                    format: url
+                    description: URL to the fact on chucknorris.io
+                    example: ""
+                  value:
+                    type: string
+                    description: The Chuck Norris fact itself
+                    example: Chuck Norris can create a rock so heavy that he couldn't lift it, and then lift it.
+        '500':
+          description: Internal server error
