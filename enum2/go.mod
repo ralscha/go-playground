@@ -1,5 +1,5 @@
 module enumdemo
 
-go 1.24.5
+go 1.25.0
 
-require github.com/orsinium-labs/enum v1.4.0
+require github.com/orsinium-labs/enum v1.5.0

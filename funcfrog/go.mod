@@ -1,7 +1,7 @@
 module funcfrogexamples
 
-go 1.24.5
+go 1.25.0
 
 require github.com/koss-null/funcfrog v1.0.7
 
-require golang.org/x/exp v0.0.0-20250718183923-645b1fa84792 // indirect
+require golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b // indirect
