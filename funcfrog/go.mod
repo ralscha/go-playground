@@ -1,6 +1,6 @@
 module funcfrogexamples
 
-go 1.25.0
+go 1.25.1
 
 require github.com/koss-null/funcfrog v1.0.7
 

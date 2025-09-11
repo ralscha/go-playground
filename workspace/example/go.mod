@@ -1,3 +1,3 @@
 module golang.org/x/example
 
-go 1.25.0
+go 1.25.1
