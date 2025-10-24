@@ -1,6 +1,6 @@
 module osm
 
-go 1.25.2
+go 1.25.3
 
 require github.com/qedus/osmpbf v1.2.0
 
