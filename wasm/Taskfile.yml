@@ -2,10 +2,6 @@
 
 version: '3'
 
-vars:
-  CURRENT_DIR:
-    sh: pwd
-
 tasks:
   default:
     cmds:
@@ -15,7 +11,7 @@ tasks:
       - GOOS=js GOARCH=wasm go build -ldflags "-s -w" -o out/main.wasm main/main.go 
   compile:
     cmds:
-      - docker run --rm -v {{toSlash .CURRENT_DIR}}:/src tinygo/tinygo tinygo build -scheduler none -no-debug -o /src/out/main.wasm -target=wasm /src/main/main.go
+      - docker run --rm -v {{toSlash .ROOT_DIR}}:/src tinygo/tinygo tinygo build -scheduler none -no-debug -o /src/out/main.wasm -target=wasm /src/main/main.go
   web:
     cmds:
       - go run web.go

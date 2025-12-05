@@ -1,6 +1,6 @@
 module generativeart
 
-go 1.25.4
+go 1.25.5
 
 require (
 	github.com/fogleman/gg v1.3.0

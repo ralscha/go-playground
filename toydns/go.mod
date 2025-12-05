@@ -1,6 +1,6 @@
 module toydns
 
-go 1.25.4
+go 1.25.5
 
 require github.com/miekg/dns v1.1.68
 

@@ -1,6 +1,6 @@
 module timekitexamples
 
-go 1.25.4
+go 1.25.5
 
 require github.com/bartmika/timekit v0.0.0-20240130035202-cad2325dfd57
 
