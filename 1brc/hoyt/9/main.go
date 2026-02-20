@@ -39,7 +39,7 @@ func r9(inputPath string, output io.Writer) error {
 	}
 
 	totals := make(map[string]*r9Stats)
-	for i := 0; i < len(parts); i++ {
+	for range parts {
 		result := <-resultsCh
 		for station, s := range result {
 			ts := totals[station]
@@ -229,7 +229,7 @@ func splitFile(inputPath string, numParts int) ([]part, error) {
 
 	parts := make([]part, 0, numParts)
 	offset := int64(0)
-	for i := 0; i < numParts; i++ {
+	for i := range numParts {
 		if i == numParts-1 {
 			if offset < size {
 				parts = append(parts, part{offset, size - offset})

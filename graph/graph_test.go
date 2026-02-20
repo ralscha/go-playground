@@ -127,7 +127,7 @@ func TestGraphDijkstra(t *testing.T) {
 	g := newGraph(true, true)
 
 	vertices := make([]*vertex, 5)
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		vertices[i] = g.addVertex(string(rune(i + 65)))
 	}
 	start := vertices[0]

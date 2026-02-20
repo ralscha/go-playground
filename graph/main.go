@@ -6,7 +6,7 @@ func main() {
 	bus := newGraph(true, true)
 
 	vertices := make([]*vertex, 5)
-	for i := 0; i < 5; i++ {
+	for i := range 5 {
 		vertices[i] = bus.addVertex(string(rune(i + 65)))
 	}
 

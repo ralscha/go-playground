@@ -112,7 +112,7 @@ func consumer(file *os.File, trash chan *TrashItem, output chan *swiss.Map[uint6
 
 		// ignoring first line
 		start := 0
-		for i := 0; i < n; i++ {
+		for i := range n {
 			if readBuffer[i] == 10 {
 				start = i + 1
 				break
@@ -199,7 +199,7 @@ func run() {
 	go trashBin(trash, output, &wgTrash)
 	outputChannels[0] = output
 
-	for i := 0; i < N_WORKERS; i++ {
+	for i := range N_WORKERS {
 		output := make(chan *swiss.Map[uint64, *StationData], 1)
 		go consumer(file, trash, output, &wg)
 		outputChannels[i+1] = output
@@ -209,12 +209,12 @@ func run() {
 	close(trash)
 	wgTrash.Wait()
 
-	for i := 0; i < N_WORKERS+1; i++ {
+	for i := range N_WORKERS + 1 {
 		close(outputChannels[i])
 	}
 
 	data := swiss.NewMap[uint64, *StationData](1000)
-	for i := 0; i < N_WORKERS+1; i++ {
+	for i := range N_WORKERS + 1 {
 		m := <-outputChannels[i]
 		m.Iter(func(station uint64, stationData *StationData) bool {
 			v, ok := data.Get(station)

@@ -30,13 +30,11 @@ func write() {
 
 	// Use a WaitGroup to wait for the number generator to stop.
 	wg := sync.WaitGroup{}
-	wg.Add(1)
 
 	// Run the number generator in a separate Go routine.
-	go func() {
-		defer wg.Done()
+	wg.Go(func() {
 	L:
-		for i := 0; i < 1000000000; i++ {
+		for i := range 1000000000 {
 			_, err := fmt.Fprintf(bw, "%d\n", i)
 			if err != nil {
 				log.Fatal(err)
@@ -48,7 +46,7 @@ func write() {
 			default:
 			}
 		}
-	}()
+	})
 
 	// Make a signal channel. Register SIGINT.
 	sigch := make(chan os.Signal, 1)

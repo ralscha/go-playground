@@ -43,7 +43,7 @@ func main() {
 	c := http.DefaultClient
 	reqURL := "https://api.btcmarkets.net/v3/markets/BTC-AUD/ticker"
 	req, _ := http.NewRequest("GET", reqURL, nil)
-	for i := 0; i < 300; i++ {
+	for i := range 300 {
 		resp, err := c.Do(req)
 		if err != nil {
 			fmt.Println(err.Error())

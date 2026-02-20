@@ -56,7 +56,6 @@ func fetchJoke(ctx context.Context, category string) (string, error) {
 func fetchJokesPool(ctx context.Context, categories []string) ([]string, error) {
 	p := pool.NewWithResults[string]().WithMaxGoroutines(5).WithContext(ctx)
 	for _, category := range categories {
-		category := category
 		p.Go(func(ctx context.Context) (string, error) {
 			return fetchJoke(ctx, category)
 		})

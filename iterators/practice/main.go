@@ -114,7 +114,7 @@ func SkipFirstN[T any](seq iter.Seq[T], skip int) iter.Seq[T] {
 		next, stop := iter.Pull[T](seq)
 		defer stop()
 
-		for i := 0; i < skip; i++ {
+		for range skip {
 			_, ok := next()
 			if !ok {
 				break

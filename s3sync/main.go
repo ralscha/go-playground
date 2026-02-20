@@ -23,7 +23,7 @@ func main() {
 	}
 
 	sess, _ := session.NewSession(&aws.Config{
-		Region: aws.String("eu-central-2"),
+		Region: new("eu-central-2"),
 	})
 
 	syncManager := s3sync.New(sess, s3sync.WithParallel(numberOfParallelJobs))

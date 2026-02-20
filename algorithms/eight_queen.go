@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 func solveEightQueen() {
 	var result [][]string
 	solveEightQueenHelper(0, []string{}, &result)
@@ -18,7 +20,7 @@ func solveEightQueenHelper(row int, board []string, result *[][]string) {
 		*result = append(*result, board)
 		return
 	}
-	for col := 0; col < 8; col++ {
+	for col := range 8 {
 		if isValid(row, col, board) {
 			solveEightQueenHelper(row+1, append(board, getRow(col)), result)
 		}
@@ -26,7 +28,7 @@ func solveEightQueenHelper(row int, board []string, result *[][]string) {
 }
 
 func isValid(row, col int, board []string) bool {
-	for i := 0; i < row; i++ {
+	for i := range row {
 		if board[i][col] == 'Q' {
 			return false
 		}
@@ -41,13 +43,13 @@ func isValid(row, col int, board []string) bool {
 }
 
 func getRow(col int) string {
-	var row string
-	for i := 0; i < 8; i++ {
+	var row strings.Builder
+	for i := range 8 {
 		if i == col {
-			row += "Q"
+			row.WriteString("Q")
 		} else {
-			row += "."
+			row.WriteString(".")
 		}
 	}
-	return row
+	return row.String()
 }
