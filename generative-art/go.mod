@@ -1,6 +1,6 @@
 module generativeart
 
-go 1.26.0
+go 1.26.1
 
 require (
 	github.com/fogleman/gg v1.3.0
@@ -9,5 +9,5 @@ require (
 
 require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
-	golang.org/x/image v0.36.0 // indirect
+	golang.org/x/image v0.37.0 // indirect
 )
