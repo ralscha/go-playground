@@ -1,6 +1,6 @@
 module s3sync.rasc.ch
 
-go 1.26.1
+go 1.26.2
 
 require (
 	github.com/aws/aws-sdk-go v1.55.8
