@@ -1,12 +1,12 @@
 module s3copy.rasc.ch
 
-go 1.26.2
+go 1.26.3
 
 require (
 	github.com/aws/aws-sdk-go-v2/config v1.32.17
-	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.22.17
-	github.com/aws/aws-sdk-go-v2/service/s3 v1.100.1
-	golang.org/x/crypto v0.50.0
+	github.com/aws/aws-sdk-go-v2/feature/s3/manager v1.22.18
+	github.com/aws/aws-sdk-go-v2/service/s3 v1.101.0
+	golang.org/x/crypto v0.51.0
 )
 
 require (
