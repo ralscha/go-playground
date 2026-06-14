@@ -1,6 +1,6 @@
 module oapidemo
 
-go 1.26.3
+go 1.26.4
 
 tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen
 

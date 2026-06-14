@@ -1,6 +1,6 @@
 module gotatutorial
 
-go 1.26.3
+go 1.26.4
 
 require github.com/go-gota/gota v0.12.0
 
