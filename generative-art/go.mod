@@ -4,7 +4,7 @@ go 1.26.4
 
 require (
 	github.com/fogleman/gg v1.3.0
-	github.com/preslavrachev/generative-art-in-go v0.0.0-20210424110101-0474fba80857
+	github.com/preslavrachev/generative-art-in-go v0.0.0-20260629084947-d3783dde2a06
 )
 
 require (
