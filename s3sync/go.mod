@@ -8,6 +8,6 @@ require (
 )
 
 require (
-	github.com/gabriel-vasile/mimetype v1.4.13 // indirect
+	github.com/gabriel-vasile/mimetype v1.4.15 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 )
