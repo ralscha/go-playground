@@ -1,6 +1,6 @@
 module di
 
-go 1.26.6
+go 1.27.0
 
 require github.com/samber/do/v2 v2.1.0
 
