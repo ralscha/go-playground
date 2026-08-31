@@ -5,7 +5,6 @@ import (
 	"image"
 	"image/color"
 	"math/rand"
-	"time"
 )
 
 type UserParams struct {
