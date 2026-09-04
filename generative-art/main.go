@@ -33,7 +33,7 @@ func main() {
 	}
 
 	s := sketch.NewSketch(image, params)
-	for i := 0; i < totalCycleCount; i++ {
+	for range totalCycleCount {
 		s.Update()
 	}
 	err = gg.SavePNG(outputImgName, s.Output())
