@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"golang.org/x/exp/slog"
 	"log"
+	"log/slog"
 	"os"
 )
 

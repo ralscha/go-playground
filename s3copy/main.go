@@ -4,16 +4,18 @@ import (
 	"context"
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/pbkdf2"
 	"crypto/rand"
 	"crypto/sha256"
-	"github.com/aws/aws-sdk-go-v2/config"
-	"github.com/aws/aws-sdk-go-v2/feature/s3/manager"
-	"github.com/aws/aws-sdk-go-v2/service/s3"
-	"golang.org/x/crypto/pbkdf2"
 	"io"
 	"log"
 	"os"
+	"os/signal"
 	"strings"
+
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/feature/s3/transfermanager"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
 func main() {
@@ -30,7 +32,9 @@ func main() {
 		password = os.Args[3]
 	}
 
-	cfg, err := config.LoadDefaultConfig(context.Background())
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer stop()
+	cfg, err := config.LoadDefaultConfig(ctx)
 	if err != nil {
 		log.Fatalf("%v\n", err)
 	}
@@ -38,14 +42,14 @@ func main() {
 	s3Client := s3.NewFromConfig(cfg)
 
 	if strings.HasPrefix(target, "s3://") {
-		s3Upload(s3Client, source, target, password)
+		s3Upload(ctx, s3Client, source, target, password)
 	} else {
-		s3Download(s3Client, source, target, password)
+		s3Download(ctx, s3Client, source, target, password)
 	}
 
 }
 
-func s3Upload(s3client *s3.Client, source, target, password string) {
+func s3Upload(ctx context.Context, s3client *s3.Client, source, target, password string) {
 	println("Uploading", source, "to", target)
 	bucket, s3key := parseS3Url(target)
 
@@ -53,7 +57,8 @@ func s3Upload(s3client *s3.Client, source, target, password string) {
 	checkError(err)
 
 	if password != "" {
-		key, salt := deriveKey(password, nil)
+		key, salt, err := deriveKey(password, nil)
+		checkError(err)
 		block, err := aes.NewCipher(key)
 		checkError(err)
 
@@ -96,8 +101,8 @@ func s3Upload(s3client *s3.Client, source, target, password string) {
 		checkError(err)
 	}
 
-	uploader := manager.NewUploader(s3client)
-	_, err = uploader.Upload(context.Background(), &s3.PutObjectInput{
+	transfers := transfermanager.New(s3client)
+	_, err = transfers.UploadObject(ctx, &transfermanager.UploadObjectInput{
 		Bucket: &bucket,
 		Key:    &s3key,
 		Body:   inFile,
@@ -114,11 +119,11 @@ func s3Upload(s3client *s3.Client, source, target, password string) {
 
 }
 
-func s3Download(s3client *s3.Client, source, target, password string) {
+func s3Download(ctx context.Context, s3client *s3.Client, source, target, password string) {
 	println("Downloading", source, "to", target)
 	bucket, key := parseS3Url(source)
 
-	downloader := manager.NewDownloader(s3client)
+	transfers := transfermanager.New(s3client)
 	var fileName string
 	if password != "" {
 		fileName = target + ".enc"
@@ -128,9 +133,10 @@ func s3Download(s3client *s3.Client, source, target, password string) {
 	outFile, err := os.Create(fileName)
 	checkError(err)
 
-	_, err = downloader.Download(context.Background(), outFile, &s3.GetObjectInput{
-		Bucket: &bucket,
-		Key:    &key,
+	_, err = transfers.DownloadObject(ctx, &transfermanager.DownloadObjectInput{
+		Bucket:   &bucket,
+		Key:      &key,
+		WriterAt: outFile,
 	})
 	checkError(err)
 
@@ -148,7 +154,8 @@ func s3Download(s3client *s3.Client, source, target, password string) {
 		_, err = inFile.ReadAt(salt, fi.Size()-int64(len(salt)))
 		checkError(err)
 
-		key, _ := deriveKey(password, salt)
+		key, _, err := deriveKey(password, salt)
+		checkError(err)
 		block, err := aes.NewCipher(key)
 		checkError(err)
 
@@ -192,15 +199,16 @@ func s3Download(s3client *s3.Client, source, target, password string) {
 
 }
 
-func deriveKey(passphrase string, salt []byte) ([]byte, []byte) {
+func deriveKey(passphrase string, salt []byte) ([]byte, []byte, error) {
 	if salt == nil {
 		salt = make([]byte, 8)
 		_, err := rand.Read(salt)
 		if err != nil {
-			return nil, nil
+			return nil, nil, err
 		}
 	}
-	return pbkdf2.Key([]byte(passphrase), salt, 10_000, 32, sha256.New), salt
+	key, err := pbkdf2.Key(sha256.New, passphrase, salt, 10_000, 32)
+	return key, salt, err
 }
 
 func parseS3Url(url string) (bucket, key string) {

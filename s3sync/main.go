@@ -1,36 +1,39 @@
 package main
 
 import (
-	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
-	"github.com/seqsense/s3sync"
+	"context"
+	"fmt"
 	"log"
 	"os"
+	"os/signal"
 	"strconv"
+
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/seqsense/s3sync/v2"
 )
 
 func main() {
-	if len(os.Args) < 3 {
-		println("Usage: s3sync source target number_of_parallel_jobs")
-		return
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
+	defer stop()
+	if err := run(ctx, os.Args[1:]); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run(ctx context.Context, args []string) error {
+	if len(args) != 3 {
+		return fmt.Errorf("usage: s3sync source target number_of_parallel_jobs")
+	}
+	numberOfParallelJobs, err := strconv.Atoi(args[2])
+	if err != nil || numberOfParallelJobs <= 0 {
+		return fmt.Errorf("number_of_parallel_jobs must be a positive integer")
 	}
 
-	source := os.Args[1]
-	target := os.Args[2]
-	numberOfParallelJobs, err := strconv.Atoi(os.Args[3])
+	cfg, err := config.LoadDefaultConfig(ctx, config.WithDefaultRegion("eu-central-2"))
 	if err != nil {
-		log.Fatalf("%v\n", err)
+		return fmt.Errorf("load AWS configuration: %w", err)
 	}
 
-	sess, _ := session.NewSession(&aws.Config{
-		Region: new("eu-central-2"),
-	})
-
-	syncManager := s3sync.New(sess, s3sync.WithParallel(numberOfParallelJobs))
-
-	err = syncManager.Sync(source, target)
-	if err != nil {
-		log.Fatalf("%v\n", err)
-	}
-
+	syncManager := s3sync.New(cfg, s3sync.WithParallel(numberOfParallelJobs))
+	return syncManager.Sync(ctx, args[0], args[1])
 }

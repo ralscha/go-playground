@@ -123,8 +123,8 @@ func TestFooerWithTestify(t *testing.T) {
 
 func TestMapWithTestify(t *testing.T) {
 
-	// require equality
-	require.Equal(t, map[int]string{1: "1", 2: "2"}, map[int]string{1: "1", 2: "3"})
+	// require inequality
+	require.NotEqual(t, map[int]string{1: "1", 2: "2"}, map[int]string{1: "1", 2: "3"})
 
 	// assert equality
 	assert.Equal(t, map[int]string{1: "1", 2: "2"}, map[int]string{1: "1", 2: "2"})

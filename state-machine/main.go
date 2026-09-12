@@ -46,12 +46,12 @@ func (m *StateMachine) getNextNode(event Event) (*Node, error) {
 func (m *StateMachine) Transition(ctx context.Context, event Event) (*Node, error) {
 	node, err := m.getNextNode(event)
 	if err != nil {
-		return nil, fmt.Errorf(err.Error())
+		return nil, err
 	}
 
 	err = m.CurrentNode.Transitions[event].Action(ctx)
 	if err != nil {
-		return nil, fmt.Errorf(err.Error())
+		return nil, err
 	}
 
 	m.CurrentNode = node

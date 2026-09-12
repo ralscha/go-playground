@@ -1,10 +1,11 @@
 package sketch
 
 import (
-	"github.com/fogleman/gg"
 	"image"
 	"image/color"
-	"math/rand"
+	"math/rand/v2"
+
+	"github.com/fogleman/gg"
 )
 
 type UserParams struct {
@@ -61,7 +62,7 @@ func (s *Sketch) Update() {
 	destY += float64(randRange(s.StrokeJitter))
 
 	// 3. Draw a "stroke" using the desired parameters
-	edges := s.MinEdgeCount + rand.Intn(s.MaxEdgeCount-s.MinEdgeCount+1)
+	edges := s.MinEdgeCount + rand.IntN(s.MaxEdgeCount-s.MinEdgeCount+1)
 
 	s.dc.SetRGBA255(r, g, b, int(s.InitialAlpha))
 	s.dc.DrawRegularPolygon(edges, destX, destY, s.strokeSize, rand.Float64())
@@ -87,7 +88,7 @@ func rgb255(c color.Color) (r, g, b int) {
 }
 
 func randRange(max int) int {
-	return -max + rand.Intn(2*max)
+	return -max + rand.IntN(2*max)
 }
 
 func (s *Sketch) Output() image.Image {
