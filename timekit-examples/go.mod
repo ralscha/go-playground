@@ -1,10 +1,10 @@
 module timekitexamples
 
-go 1.27.1
+go 1.27.3
 
 require github.com/bartmika/timekit v0.0.0-20240130035202-cad2325dfd57
 
 require (
 	github.com/dannav/hhmmss v1.0.0 // indirect
-	github.com/relvacode/iso8601 v1.8.1 // indirect
+	github.com/relvacode/iso8601 v1.8.2 // indirect
 )

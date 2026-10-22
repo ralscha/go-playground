@@ -1,10 +1,10 @@
 module scrape
 
-go 1.27.1
+go 1.27.3
 
 require github.com/PuerkitoBio/goquery v1.13.0
 
 require (
 	github.com/andybalholm/cascadia v1.3.5 // indirect
-	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/net v0.61.0 // indirect
 )

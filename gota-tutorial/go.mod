@@ -1,10 +1,10 @@
 module gotatutorial
 
-go 1.27.1
+go 1.27.3
 
 require github.com/go-gota/gota v0.12.0
 
 require (
-	golang.org/x/net v0.59.0 // indirect
+	golang.org/x/net v0.61.0 // indirect
 	gonum.org/v1/gonum v0.17.0 // indirect
 )

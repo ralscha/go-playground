@@ -1,6 +1,6 @@
 module onebillion
 
-go 1.27.1
+go 1.27.3
 
 require github.com/dolthub/swiss v0.2.1
 
