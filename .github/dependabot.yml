@@ -1,0 +1,74 @@
+# Weekly version updates; security updates are enabled in repository settings.
+# Minor and patch releases are grouped; major releases remain separate.
+version: 2
+updates:
+- package-ecosystem: gomod
+  directories:
+  - /1brc/hoyt
+  - /1brc/r2p
+  - /algorithms
+  - /betterconc
+  - /bigdecimal
+  - /circularbuffer
+  - /client-rate-limit
+  - /contex
+  - /di
+  - /enum
+  - /enum2
+  - /funcfrog
+  - /fuzz
+  - /generative-art
+  - /gota-tutorial
+  - /graph
+  - /iterators/practice
+  - /iterators/tutorialedge
+  - /maps
+  - /oapi
+  schedule:
+    interval: weekly
+    day: monday
+    time: "09:00"
+    timezone: Europe/Zurich
+  open-pull-requests-limit: 5
+  groups:
+    minor-and-patch-a:
+      applies-to: version-updates
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
+- package-ecosystem: gomod
+  directories:
+  - /openstreetmap
+  - /s3copy
+  - /s3sync
+  - /scrape
+  - /secrets
+  - /signals/1
+  - /signals/2
+  - /signals/3
+  - /slices
+  - /state-machine
+  - /structuredlog
+  - /test
+  - /test2
+  - /testcontainers
+  - /timekit-examples
+  - /toydns
+  - /workspace/example
+  - /workspace/hello
+  schedule:
+    interval: weekly
+    day: monday
+    time: "09:00"
+    timezone: Europe/Zurich
+  open-pull-requests-limit: 5
+  groups:
+    minor-and-patch-b:
+      applies-to: version-updates
+      patterns:
+      - '*'
+      update-types:
+      - minor
+      - patch
