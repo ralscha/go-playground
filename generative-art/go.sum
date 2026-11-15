@@ -4,5 +4,5 @@ github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 h1:DACJavvAHhabrF0
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
 github.com/preslavrachev/generative-art-in-go v0.0.0-20260629084947-d3783dde2a06 h1:qiVSk/LQ7j9xdo0MbrfSkG2sInAjwPmFoxgWxraj8B4=
 github.com/preslavrachev/generative-art-in-go v0.0.0-20260629084947-d3783dde2a06/go.mod h1:wMIKUmuMNlq0p8fO2AJQUpHcgH+YlOqXybtivR/EcEI=
-golang.org/x/image v0.47.0 h1:za/8gVz++PPZqmZJBNSISICN5Rrj5zixP/8K++fgmqo=
-golang.org/x/image v0.47.0/go.mod h1:IkN5o4A7vq55vXN8FWjjnhg9Rs2GOtffqsSi9mWAKYE=
+golang.org/x/image v0.48.0 h1:1AvuPcuoOTJpA7s4VZ5umrb90T3So0rkB/bSGmxkxik=
+golang.org/x/image v0.48.0/go.mod h1:mmtg64iqJKGqEgy+r13dfybl85tmxUd2lMnmaiSdWYY=
